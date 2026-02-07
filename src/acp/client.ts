@@ -32,7 +32,8 @@ function toArgs(value: string[] | string | undefined): string[] {
 }
 
 function buildServerArgs(opts: AcpClientOptions): string[] {
-  const args = ["acp", ...toArgs(opts.serverArgs)];
+  const prefix = opts.serverCommand ? [] : ["acp"];
+  const args = [...prefix, ...toArgs(opts.serverArgs)];
   if (opts.serverVerbose && !args.includes("--verbose") && !args.includes("-v")) {
     args.push("--verbose");
   }

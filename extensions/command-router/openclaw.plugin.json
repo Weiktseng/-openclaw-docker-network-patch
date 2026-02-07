@@ -1,0 +1,12 @@
+{
+  "id": "command-router",
+  "name": "Command Router",
+  "version": "0.1.0",
+  "description": "Lightweight command dispatcher — bypasses the main agent and routes to sub-agents",
+  "entryPoint": "index.ts",
+  "configSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

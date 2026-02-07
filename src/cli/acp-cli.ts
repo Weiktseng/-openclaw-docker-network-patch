@@ -47,14 +47,28 @@ export function registerAcpCli(program: Command) {
     .option("--cwd <dir>", "Working directory for the ACP session")
     .option("--server <command>", "ACP server command (default: openclaw)")
     .option("--server-args <args...>", "Extra arguments for the ACP server")
+    .option("--url <url>", "Gateway WebSocket URL (forwarded to ACP server)")
+    .option("--token <token>", "Gateway token (forwarded to ACP server)")
+    .option("--password <password>", "Gateway password (forwarded to ACP server)")
+    .option("--session <key>", "Session key (forwarded to ACP server)")
+    .option("--session-label <label>", "Session label (forwarded to ACP server)")
+    .option("--reset-session", "Reset session (forwarded to ACP server)", false)
     .option("--server-verbose", "Enable verbose logging on the ACP server", false)
     .option("--verbose, -v", "Verbose client logging", false)
     .action(async (opts) => {
       try {
+        const forwardArgs: string[] = [...(opts.serverArgs as string[] ?? [])];
+        if (opts.url) forwardArgs.push("--url", opts.url as string);
+        if (opts.token) forwardArgs.push("--token", opts.token as string);
+        if (opts.password) forwardArgs.push("--password", opts.password as string);
+        if (opts.session) forwardArgs.push("--session", opts.session as string);
+        if (opts.sessionLabel) forwardArgs.push("--session-label", opts.sessionLabel as string);
+        if (opts.resetSession) forwardArgs.push("--reset-session");
+
         await runAcpClientInteractive({
           cwd: opts.cwd as string | undefined,
           serverCommand: opts.server as string | undefined,
-          serverArgs: opts.serverArgs as string[] | undefined,
+          serverArgs: forwardArgs.length > 0 ? forwardArgs : undefined,
           serverVerbose: Boolean(opts.serverVerbose),
           verbose: Boolean(opts.verbose),
         });

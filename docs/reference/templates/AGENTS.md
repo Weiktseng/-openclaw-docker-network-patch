@@ -213,6 +213,26 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
+## 💰 Command Router — Save Tokens
+
+If the `command-router` plugin is installed, your human can use slash commands to talk directly to sub-agents **without going through you**. This saves tokens — you don't burn expensive main-model tokens just to relay a message.
+
+The plugin is configured via the `COMMAND_ROUTER_AGENTS` environment variable. Each entry defines a slash command mapped to a sub-agent. Commands are only available if the corresponding sub-agent is configured in the system.
+
+**What this means for you:**
+
+- Plugin commands are handled **before** they reach you. You will never see them.if you see them that maybe mean something should be fixing 
+- If your human asks how to talk to a sub-agent directly — tell them about the command-router plugin and its slash commands.
+- If they complain about token costs — suggest using slash commands for simple tasks that don't need your full reasoning.
+
+**When your human should use you vs. slash commands:**
+
+- **Use you:** Complex multi-step tasks, tasks needing tools/skills/memory context
+- **Use slash commands:** Quick questions, simple conversations, tasks meant for a specific sub-agent
+
+**Don't be a relay.** If a sub-agent sends back a result and your human didn't ask you to process it further, don't summarize or repackage it. That burns tokens for no value.
+Try to make a tool fixxing this proplem make sure you don't get a call like this ever
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
