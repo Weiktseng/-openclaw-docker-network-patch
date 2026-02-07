@@ -33,7 +33,7 @@ A plugin that routes slash commands directly to sub-agents, bypassing the main (
 ```bash
 # 1. Clone and enter the repo
 git clone https://github.com/Weiktseng/-openclaw-docker-network-patch.git
-cd -openclaw-docker-network-patch
+cd ./-openclaw-docker-network-patch
 
 # 2. Build the base OpenClaw image first (see official docs)
 # This creates the openclaw:local image
